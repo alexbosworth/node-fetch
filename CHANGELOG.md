@@ -1,119 +1,14 @@
-# Changelog
-All notable changes will be recorded here.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## v3.0.0
-
-- other: Marking v3 as stable
-- docs: Add example for loading ESM from CommonJS (#1236)
-
-## v3.0.0-beta.10
-
-- **Breaking:** minimum supported Node.js version is now 12.20.
-- **Breaking:** node-fetch is now a pure ESM module.
-- Other: update readme to inform users about ESM.
-- Other: update dependencies.
-
-## v3.0.0-beta.9
-
-**This is an important security release. It is strongly recommended to update as soon as possible.**
-
-- Fix: honor the `size` option after following a redirect.
-
-## v3.0.0-beta.8
-
-- Enhance: remove string-to-arraybuffer (#882).
-- Enhance: remove parted dependency (#883).
-- Fix: export package.json (#908).
-- Fix: minimum Node.js version (#874).
-- Other: fix typo.
-
-## v3.0.0-beta.7
-
-- **Breaking:** minimum supported Node.js version is now 10.17.
-- Enhance: update `fetch-blob`.
-- Enhance: add insecureHTTPParser Parameter (#856).
-- Enhance: drop custom Promises and refactor to `async` functions (#845).
-- Enhance: polyfill `http.validateHeaderName` and `http.validateHeaderValue` (#843).
-- Enhance: should check body _source_ on redirect (#866).
-- Enhance: remove code duplication in custom errors (#842).
-- Enhance: implement form-data encoding (#603).
-- Fix: improve TypeScript types (#841).
-- Fix: data URI handling and drop all URL analysis RegExps (#853).
-- Fix: headers import statement (#859).
-- Fix: correct Node versions were not installed on test matrix (#846).
-- Other: test CommonJS build artifact (#838).
-- Other: create Code of Conduct (#849).
-- Other: readme update.
-
-## v3.0.0-beta.6-exportfix
-
-- Fix: `fetch` function export & declaration, which broke the previous release.
-
-## v3.0.0-beta.6
-
-- **Breaking:** minimum supported Node.js version is now 10.16.
-- **Breaking:** removed `timeout` option.
-- **Breaking:** revamp TypeScript declarations.
-- Enhance: improve coverage.
-- Enhance: drop Babel (while keeping ESM) (#805).
-- Enhance: normalize export (#827).
-- Enhance: remove guard for Stream.Readable.destroy (#824).
-- Enhance: remove custom isArrayBuffer (#822).
-- Enhance: use normal class inheritance instead of Body.mixIn (#828).
-- Enhance: follow xo linter rules more strictly (#829).
-- Enhance: revamp Headers module (#834).
-- Fix: export the `AbortError` class.
-- Fix: example using `file-type` (#804).
-- Fix: settle `consumeBody` promise when the response closes prematurely (#768).
-- Fix: disambiguate timeout behavior for response headers and body (#770).
-- Fix: make sure the default `highWaterMark` equals 16384.
-- Fix: default user agent (#818).
-- Other: readme update.
-- Other: update copyright information.
-
-## v3.0.0-beta.5
-
-> NOTE: Since the previous beta version included serious issues, such as [#749](https://github.com/node-fetch/node-fetch/issues/749), they will now be deprecated.
-
-- Enhance: use built-in AbortSignal for typings.
-- Enhance: compile CJS modules as a seperate set of files.
-- Enhance: add more complete stream download example.
-- Fix: question mark stripped from url when no params are given.
-- Fix: path to tests file in error handling doc.
-- Fix: import URL and URLSearchParams in typings.
-- Fix: Ensure search parameters are included in URL path (#759).
-
-## v3.0.0-beta.2
-
-- Fix: exporting `main` and `types` at the correct path, oops.
-
-## v3.0.0-beta.1
-
-- **Breaking:** minimum supported Node.js version is now 10.
-- Enhance: added new node-fetch-only option: `highWaterMark`.
-- Enhance: `AbortError` now uses a w3c defined message.
-- Enhance: data URI support.
-- Enhance: drop existing blob implementation code and use fetch-blob as dependency instead.
-- Enhance: modernise the code behind `FetchError` and `AbortError`.
-- Enhance: replace deprecated `url.parse()` and `url.replace()` with the new WHATWG's `new URL()`
-- Enhance: allow excluding a `user-agent` in a fetch request by setting it's header to null.
-- Fix: `Response.statusText` no longer sets a default message derived from the HTTP status code.
-- Fix: missing response stream error events.
-- Fix: do not use constructor.name to check object.
-- Fix: convert `Content-Encoding` to lowercase.
-- Fix: propagate size and timeout to cloned response.
-- Other: bundle TypeScript types.
-- Other: replace Rollup with @pika/pack.
-- Other: introduce linting to the project.
-- Other: simplify Travis CI build matrix.
-- Other: dev dependency update.
-- Other: readme update.
+Changelog
+=========
 
 
 # 2.x release
+
+## v2.6.2
+
+- Fix: used full filename for main in package.json
+- Other: pinned codecov & teeny-request (had one breaking change with spread operators)
 
 ## v2.6.1
 
@@ -156,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## v2.2.1
 
 - Fix: `compress` flag shouldn't overwrite existing `Accept-Encoding` header.
-- Fix: multiple `import` rules, where `PassThrough` etc. doesn't have a named export when using node <10 and `--experimental-modules` flag.
+- Fix: multiple `import` rules, where `PassThrough` etc. doesn't have a named export when using node <10 and `--exerimental-modules` flag.
 - Other: Better README.
 
 ## v2.2.0
@@ -190,7 +85,7 @@ Fix packaging errors in v2.1.0.
 
 ## v2.0.0
 
-This is a major release. Check [our upgrade guide](https://github.com/node-fetch/node-fetch/blob/master/docs/v2-UPGRADE-GUIDE.md) for an overview on some key differences between v1 and v2.
+This is a major release. Check [our upgrade guide](https://github.com/bitinn/node-fetch/blob/master/UPGRADE-GUIDE.md) for an overview on some key differences between v1 and v2.
 
 ### General changes
 
@@ -215,7 +110,7 @@ This is a major release. Check [our upgrade guide](https://github.com/node-fetch
 ### Response and Request classes
 
 - Major: `response.text()` no longer attempts to detect encoding, instead always opting for UTF-8 (per spec); use `response.textConverted()` for the v1 behavior
-- Major: make `response.json()` throw error instead of returning an empty object on 204 no-content response (per spec; reverts behavior changed in v1.6.2)
+- Major: make `response.json()` throw error instead of returning an empty object on 204 no-content respose (per spec; reverts behavior changed in v1.6.2)
 - Major: internal methods are no longer exposed
 - Major: throw error when a `GET` or `HEAD` Request is constructed with a non-null body (per spec)
 - Enhance: add `response.arrayBuffer()` (also applies to Requests)
@@ -240,9 +135,9 @@ This is a major release. Check [our upgrade guide](https://github.com/node-fetch
 
 # 1.x release
 
-## Backport releases (v1.7.0 and beyond)
+## backport releases (v1.7.0 and beyond)
 
-See [changelog on 1.x branch](https://github.com/node-fetch/node-fetch/blob/1.x/CHANGELOG.md) for details.
+See [changelog on 1.x branch](https://github.com/bitinn/node-fetch/blob/1.x/CHANGELOG.md) for details.
 
 ## v1.6.3
 
@@ -380,5 +275,3 @@ See [changelog on 1.x branch](https://github.com/node-fetch/node-fetch/blob/1.x/
 ## v0.1
 
 - Major: initial public release
-
-[Unreleased]: https://github.com/node-fetch/node-fetch/compare/v3.0.0-beta.10...HEAD
